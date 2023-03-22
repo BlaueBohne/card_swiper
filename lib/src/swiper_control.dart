@@ -22,6 +22,8 @@ class SwiperControl extends SwiperPlugin {
 
   final Key? key;
 
+  final bool gesture = false;
+
   const SwiperControl({
     this.iconPrevious = Icons.arrow_back_ios,
     this.iconNext = Icons.arrow_forward_ios,
@@ -42,10 +44,12 @@ class SwiperControl extends SwiperPlugin {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        if (previous) {
-          config!.controller.previous(animation: true);
-        } else {
-          config!.controller.next(animation: true);
+        if(gesture) {
+          if (previous) {
+            config!.controller.previous(animation: true);
+          } else {
+            config!.controller.next(animation: true);
+          }
         }
       },
       child: Padding(
